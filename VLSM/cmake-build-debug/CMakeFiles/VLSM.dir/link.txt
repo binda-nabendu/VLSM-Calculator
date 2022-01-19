@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2020.1.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\VLSM.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\VLSM.dir/objects.a @CMakeFiles\VLSM.dir\objects1.rsp
+C:\MinGW\bin\gcc.exe -g -Wl,--whole-archive CMakeFiles\VLSM.dir/objects.a -Wl,--no-whole-archive -o VLSM.exe -Wl,--out-implib,libVLSM.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\VLSM.dir\linklibs.rsp
