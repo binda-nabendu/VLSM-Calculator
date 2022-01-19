@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "F:/C++ code with Clion/VLSM/main.c" "F:/C++ code with Clion/VLSM/cmake-build-debug/CMakeFiles/VLSM.dir/main.c.obj"
+  "F:/C++ code with Clion/VLSM-Calculator/VLSM/main.c" "F:/C++ code with Clion/VLSM-Calculator/VLSM/cmake-build-debug/CMakeFiles/VLSM.dir/main.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

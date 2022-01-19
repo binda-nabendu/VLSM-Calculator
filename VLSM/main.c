@@ -33,6 +33,7 @@ void selectionSortForCustom(Network arr[], int n);
 void printThem(AssignForNetwork *allSubnetwork, int n, Network *serialWithTotal);
 
 void printAllChar(const char *string, char charSet[32]);
+void printAllCharInDec(const char *string, char *charSet);
 
 int main() {
     int n;
@@ -43,7 +44,7 @@ int main() {
     Network allNetworks[n];
 
     for(int i=0; i<n; i++){
-        printf("Please enter the number of host in your Network %d: \n",i+1);
+        printf("Please enter the number of host in your Network %d: ",i+1);
 
         allNetworks[i].serialNo=i;
         scanf("%d",&allNetworks[i].totalNodes);
@@ -95,12 +96,22 @@ int main() {
 }
 
 void printThem(AssignForNetwork *allSubnetwork, int n, Network *serialWithTotal) {
+    printf("press 1 for see all value in decimal or 0 for binary:\n");
+    int userChoice;
+    scanf("%d",&userChoice);
     for(int i=0; i<n; i++){
-        printf("For Network: %d which contain: %d nods\n",serialWithTotal[i].serialNo+1,serialWithTotal[i].totalNodes);
-        printAllChar("Network Address: ",allSubnetwork[i].network);
-        printAllChar("FirstAssignableHost: ",allSubnetwork[i].firstAssignable);
-        printAllChar("LastAssignableHost: ",allSubnetwork[i].lastAssignable);
-        printAllChar("Broadcast Address: ",allSubnetwork[i].broadcast);
+        printf("For Network: %d which contain: %d nods\n",serialWithTotal[i].serialNo+1,serialWithTotal[i].totalNodes-2);
+        if(userChoice==0) {
+            printAllChar("Network Address: ", allSubnetwork[i].network);
+            printAllChar("FirstAssignableHost: ", allSubnetwork[i].firstAssignable);
+            printAllChar("LastAssignableHost: ", allSubnetwork[i].lastAssignable);
+            printAllChar("Broadcast Address: ", allSubnetwork[i].broadcast);
+        } else if(userChoice==1) {
+            printAllCharInDec("Network Address: ", allSubnetwork[i].network);
+            printAllCharInDec("FirstAssignableHost: ", allSubnetwork[i].firstAssignable);
+            printAllCharInDec("LastAssignableHost: ", allSubnetwork[i].lastAssignable);
+            printAllCharInDec("Broadcast Address: ", allSubnetwork[i].broadcast);
+        }
         printf("Subnet Mask: %d\n",allSubnetwork[i].subnet);
         printf("----------------------------------------------------\n\n");
 
@@ -114,6 +125,27 @@ void printAllChar(const char *string, char *charSet) {
         printf("%c",charSet[i]);
     }
     printf("\n");
+}
+void printAllCharInDec(const char *string, char *charSet) {
+    int octet[4]={0,0,0,0};
+    int cBitVal=1;
+    int total=0;
+    int currentOctet=3;
+    int counter=1;
+    for(int i=31; i>=0; i--){
+        total+= charSet[i]=='1'? cBitVal : 0;
+        cBitVal=cBitVal<<1;
+        if(counter==8){
+            octet[currentOctet]=total;
+            counter=0;
+            currentOctet--;
+            cBitVal=1;
+            total=0;
+        }
+        counter++;
+    }
+    printf("%s(In decimal):",string);
+    printf("%d:%d:%d:%d\n",octet[0],octet[1],octet[2],octet[3]);
 }
 
 
